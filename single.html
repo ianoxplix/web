@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>ShopIt | Single</title>
+    <link rel="stylesheet"  type="text/css" href="../static/css/bootstrap.css"/>
+
+</head>
+<body>
+<div class="jumbotron">
+    <h2>ShopIt Limited</h2>
+    <a href="/" class="btn btn-warning">Continue Shopping</a>
+</div>
+
+
+<div class="container">
+    <section class="row">
+        <div class="card">
+            <img src="https://modcom.co.ke/pics/{{product[6]}}"
+                 alt="" class="img-fluid" width="50%">
+            <h2>{{product[1]}}</h2>
+        <p class="text-muted">{{product[2]}}</p>
+        <i>Category: {{product[3]}}</i>
+        <h5 class="text-warning">Date Updated: {{product[4]}}</h5>
+        </br>
+        <b style="text-decoration: line-through;">Old Price: {{product[5]}}</b>
+        <br><br>
+        <u>New Price: {{product[7]}}</u>
+        <br>
+        </div>
+
+
+ <div   id="container">
+                <div class="right-div">
+                <form action="/mpesa" class="form" method="post">
+            <br><br>
+            <input type="text"name = "phone" placeholder="Phone number"><br><br>
+            <input type="number" name="qty" placeholder="Quantity"><br><br>
+            <input type="submit" class="btn btn-warning" value="Proceed with Payment"><br><br>
+        </form>
+            </div>
+                </div>
+    </section>
+    <script>
+#container {
+  position: absolute;
+  width: 500px; /* Set the desired width for the container */
+  height: 300px; /* Set the desired height for the container */
+  background-color: lightgray; /* For visualization purposes */
+  left: 25px;
+}
+
+.right-div {
+  position: absolute;
+  top: 0;
+    right: 10px;
+  width: 200px; /* Set the desired width for the right div */
+  height: 100%; /* Fill the height of the container */
+  background-color: teal; /* For visualization purposes */
+}
+    </script>
+</div>
+</body>
+</html>
