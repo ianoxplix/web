@@ -5,6 +5,8 @@ from flask import redirect
 import requests
 import datetime
 import base64
+
+from pymysql.cursors import Cursor
 from requests.auth import HTTPBasicAuth
 
 app = Flask(__name__)
@@ -21,7 +23,7 @@ def home():
     return render_template('index.html', rows=rows)
 
 
-@app.route("/search", methods=['POST','GET'])
+@app.route("/search", methods=['POST', 'GET'])
 def search():
     if request.method == "POST":
         searchterm = request.form['search']
@@ -67,6 +69,7 @@ def register():
     else:
         return render_template('register.html')
 
+
 @app.route("/admin_post", methods=['POST', 'GET'])
 def post_products():
     if request.method == "POST":
@@ -78,19 +81,21 @@ def post_products():
         oldprice = request.form['oldprice']
         PICTURE_url = request.form['PICTURE_url']
         spare = request.form['spare']
-        
+
         cursor = connection.cursor()
         try:
-            cursor.execute("INSERT INTO items(ProductID,ProductName,NewPrice,Category,date,oldprice,PICTURE_url,spare) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)", (ProductID, ProductName, NewPrice, Category, date, oldprice, PICTURE_url, spare))
+            cursor.execute("INSERT INTO items(ProductID,ProductName,NewPrice,Category,date,oldprice,PICTURE_url,spare) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)",(ProductID, ProductName, NewPrice, Category, date, oldprice, PICTURE_url, spare))
             connection.commit()
-         else:
-        cursor.execute("SELECT ProductID COUNT(*) FROM items HAVING COUNT(*)>1")connection.comimit.()
+            Cursor.execute("SELECT ProductID COUNT(*) FROM items HAVING COUNT(*)>1")
+            connection.commit()
+
         except:
-            return render_template('register.html', msg1="Unable to create another Entty with {}".format(ProductID))
+                return render_template('register.html', msg1="Unable to create another Entty with {}".format(ProductID))
         return render_template('register.html', msg1="Succesfully added the Product")
-    
+
     else:
         return render_template('register.html')
+
 
 
 @app.route("/products")
