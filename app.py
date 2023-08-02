@@ -67,6 +67,30 @@ def register():
     else:
         return render_template('register.html')
 
+@app.route("/admin_post", methods=['POST', 'GET'])
+def post_products():
+    if request.method == "POST":
+        ProductID = request.form['ProductID']
+        ProductName = request.form['ProductName']
+        NewPrice = request.form['NewPrice']
+        Category = request.form['Category']
+        date = request.form['date']
+        oldprice = request.form['oldprice']
+        PICTURE_url = request.form['PICTURE_url']
+        spare = request.form['spare']
+        
+        cursor = connection.cursor()
+        try:
+            cursor.execute("INSERT INTO items(ProductID,ProductName,NewPrice,Category,date,oldprice,PICTURE_url,spare) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)", (ProductID, ProductName, NewPrice, Category, date, oldprice, PICTURE_url, spare))
+            connection.commit()
+        except:
+            return render_template('register.html', msg1="Unable to create anotherEntty with {}".format(ProductID))
+        return render_template('register.html', msg1="Succesfully added the Product")
+    else:
+        cursor.execute("SELECT ProductID COUNT(*) FROM items HAVING COUNT(*)>1")
+    else:
+        return render_template('register.html')
+
 
 @app.route("/products")
 def products():
