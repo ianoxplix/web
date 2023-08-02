@@ -83,11 +83,12 @@ def post_products():
         try:
             cursor.execute("INSERT INTO items(ProductID,ProductName,NewPrice,Category,date,oldprice,PICTURE_url,spare) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)", (ProductID, ProductName, NewPrice, Category, date, oldprice, PICTURE_url, spare))
             connection.commit()
+     else:
+        cursor.execute("SELECT ProductID COUNT(*) FROM items HAVING COUNT(*)>1")connection.comimit.()
         except:
-            return render_template('register.html', msg1="Unable to create anotherEntty with {}".format(ProductID))
+            return render_template('register.html', msg1="Unable to create another Entty with {}".format(ProductID))
         return render_template('register.html', msg1="Succesfully added the Product")
-    else:
-        cursor.execute("SELECT ProductID COUNT(*) FROM items HAVING COUNT(*)>1")
+    
     else:
         return render_template('register.html')
 
