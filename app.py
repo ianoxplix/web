@@ -1,12 +1,11 @@
-from flask import Flask, render_template, session
-import pymysql
-from flask import request
-from flask import redirect
-import requests
-import datetime
 import base64
+import datetime
 
-from pymysql.cursors import Cursor
+import pymysql
+import requests
+from flask import Flask, render_template, session
+from flask import redirect
+from flask import request
 from requests.auth import HTTPBasicAuth
 
 app = Flask(__name__)
@@ -71,30 +70,28 @@ def register():
 
 
 @app.route("/admin_post", methods=['POST', 'GET'])
-def post_products():
+def admin_post():
     if request.method == "POST":
-        ProductID = request.form['ProductID']
         ProductName = request.form['ProductName']
         NewPrice = request.form['NewPrice']
         Category = request.form['Category']
         date = request.form['date']
-        oldprice = request.form['oldprice']
-        PICTURE_url = request.form['PICTURE_url']
+        oldprice: str = request.form['oldprice']
+        PICTURE_url: str = request.form['PICTURE_url']
         spare = request.form['spare']
 
         cursor = connection.cursor()
         try:
-            cursor.execute("INSERT INTO items(ProductID,ProductName,NewPrice,Category,date,oldprice,PICTURE_url,spare) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)",(ProductID, ProductName, NewPrice, Category, date, oldprice, PICTURE_url, spare))
-            connection.commit()
-            Cursor.execute("SELECT ProductID COUNT(*) FROM items HAVING COUNT(*)>1")
+            cursor.execute("INSERT INTO items(ProductName,NewPrice,Category,date,oldprice,PICTURE_url,spare) VALUES("
+                           "%s,%s,%s,%s,%s,%s,%s)",( ProductName, NewPrice, Category, date, oldprice,
+                                                    PICTURE_url, spare))
             connection.commit()
 
-        except:
-                return render_template('register.html', msg1="Unable to create another Entty with {}".format(ProductID))
-        return render_template('register.html', msg1="Succesfully added the Product")
+
+        except:        return render_template('admin_post.html', msg1="Succesfully added the Product")
 
     else:
-        return render_template('register.html')
+        return render_template('admin_post.html')
 
 
 
