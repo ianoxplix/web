@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vannis | Create Account</title>
+            <link rel="stylesheet"  type="text/css" href="../static/css/bootstrap.css"/>
+</head>
+<body>
+
+
+    <section class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="/">ShopIt</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Products <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                  </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </div>
+            </nav>
+
+        </div>
+    </section>
+<h1 class="jumbotron text-center text-muted">Create your account with us</h1>
+<div class="container">
+    <!--register form-->
+    <section class="row" style="margin-left:10%;">
+        <div class="col-md-4">
+    <form action="/admin_post" method="post">
+<!--              <div class="form-group">-->
+<!--                <label for="formGroupExampleInput">First Name</label>-->
+<!--                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter First name">-->
+<!--              </div>-->
+<!--              <div class="form-group">-->
+<!--                <label for="formGroupExampleInput2">Last Name</label>-->
+<!--                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Enter Last name">-->
+<!--              </div>-->
+
+
+             <div class="form-group">
+                <label for="formGroupExampleInput22">Enter Name of the Product</label>
+                <input type="ProductName" class="form-control" name ="ProductName" id="formGroupExampleInput22" placeholder="Enter NAme of the product.">
+              </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput23">NewPrice</label>
+                <input type="NewPrice" class="form-control" name = "NewPrice" id="formGroupExampleInput23" placeholder="New Price of the product.">
+              </div>
+         <div class="form-group">
+                <label for="formGroupExampleInput24">Category</label>
+                <input type="Category" class="form-control" name="Category" id="formGroupExampleInput24" placeholder="Enter Category of the product">
+              </div>
+         <div class="form-group">
+                <label for="formGroupExampleInput25">Date</label>
+                <input type="date" class="form-control" name="date" id="formGroupExampleInput25" placeholder="Enter date of purchase">
+              </div>
+         <div class="form-group">
+                <label for="formGroupExampleInput26">Old price</label>
+                <input type="oldprice" class="form-control" name="oldprice" id="formGroupExampleInput26" placeholder="Enter old price">
+              </div>
+         <div class="form-group">
+                <label for="formGroupExampleInput27">Picture url</label>
+                <input type="PICTURE_url" class="form-control" name="PICTURE_url" id="formGroupExampleInput27" placeholder="Enter url">
+              </div>
+         <div class="form-group">
+                <label for="formGroupExampleInput28">spare</label>
+                <input type="spare" class="form-control" name="spare" id="formGroupExampleInput28" placeholder="Enter spare still dont know what it mens">
+              </div>
+<!--             <div class="form-group">-->
+<!--                <label for="formGroupExampleInput24">Retype Password</label>-->
+<!--                <input type="hidden" class="form-control" name="repassword" id="formGroupExampleInput24" placeholder="Retype Password">-->
+<!--              </div>-->
+
+<!--             <div class="form-group">-->
+<!--                <label for="formGroupExampleInput25">Joining date</label>-->
+<!--                <input type="date" class="form-control" id="formGroupExampleInput25" >-->
+<!--              </div>-->
+<!--             <div class="custom-control custom-radio">-->
+<!--                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">-->
+<!--                  <label class="custom-control-label" for="customRadio1">Male</label>-->
+<!--                </div>-->
+<!--                <div class="custom-control custom-radio">-->
+<!--                  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">-->
+<!--                  <label class="custom-control-label" for="customRadio2">Female</label>-->
+<!--                </div>-->
+
+                <button type="submit" class="btn btn-warning mb-2">add in db</button>
+            </form>
+
+            <p>
+                <b>{{msg1}}</b>
+                <br>
+            </p>
+
+
+
+        </div>
+        <div class="col-md-8">
+            <img src="https://bloximages.chicago2.vip.townnews.com/heraldextra.com/content/tncms/assets/v3/editorial/b/5b/b5bbbb87-ccdb-5197-9eb1-8ef504219e4e/5ad4d7c19073f.image.jpg"
+                 alt="" class="img-fluid" width="80%"/>
+
+        </div>
+    </section>
+    <!--end of register form-->
+</div>
+</body>
+</html>

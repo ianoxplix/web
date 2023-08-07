@@ -1,10 +1,11 @@
-from flask import Flask, render_template, session
-import pymysql
-from flask import request
-from flask import redirect
-import requests
-import datetime
 import base64
+import datetime
+
+import pymysql
+import requests
+from flask import Flask, render_template, session
+from flask import redirect
+from flask import request
 from requests.auth import HTTPBasicAuth
 
 app = Flask(__name__)
@@ -21,7 +22,7 @@ def home():
     return render_template('index.html', rows=rows)
 
 
-@app.route("/search", methods=['POST','GET'])
+@app.route("/search", methods=['POST', 'GET'])
 def search():
     if request.method == "POST":
         searchterm = request.form['search']
@@ -66,6 +67,32 @@ def register():
         return render_template('register.html', msg1="Account Created Successfully")
     else:
         return render_template('register.html')
+
+
+@app.route("/admin_post", methods=['POST', 'GET'])
+def admin_post():
+    if request.method == "POST":
+        ProductName = request.form['ProductName']
+        NewPrice = request.form['NewPrice']
+        Category = request.form['Category']
+        date = request.form['date']
+        oldprice: str = request.form['oldprice']
+        PICTURE_url: str = request.form['PICTURE_url']
+        spare = request.form['spare']
+
+        cursor = connection.cursor()
+        try:
+            cursor.execute("INSERT INTO items(ProductName,NewPrice,Category,date,oldprice,PICTURE_url,spare) VALUES("
+                           "%s,%s,%s,%s,%s,%s,%s)",( ProductName, NewPrice, Category, date, oldprice,
+                                                    PICTURE_url, spare))
+            connection.commit()
+
+
+        except:        return render_template('admin_post.html', msg1="Succesfully added the Product")
+
+    else:
+        return render_template('admin_post.html')
+
 
 
 @app.route("/products")
