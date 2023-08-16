@@ -1,6 +1,5 @@
 import base64
 import datetime
-
 import pymysql
 import requests
 from flask import Flask, render_template, session
