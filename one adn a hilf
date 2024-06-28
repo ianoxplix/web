@@ -1,0 +1,1991 @@
+<html lang="en" dir="ltr" data-action="CC_UPDATESTATE.ASP" class="cardStyle stackedLabels ClassicReverseBG" data-pagetype="deposit-approved"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, viewport-fit=cover">
+	<title>Deposit to Account</title>
+
+	<link rel="manifest" href="manifest.json">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link href="include/css/merged.css?v=4.9" rel="stylesheet">
+	<link href="../../C_Common/images/processors/imagespp.css?v=4.9" rel="stylesheet">
+	<link href="include/css/CashierBase-f0-c1-s1_Style.css?v=4.9" rel="stylesheet">
+	<link href="include/css/stackedLabels.css?v=4.9" rel="stylesheet">
+	<link href="include/css/Theme_ClassicReverseBG.css?v=4.9" rel="stylesheet">
+<style>/* Primary Color HSL Value */
+:root {	--primary-color-h: 1;
+	--primary-color-s: 77%;
+	--primary-color-l: 55%;
+}
+</style>
+
+	<meta name="theme-color" content="#FFF">
+		<style> /* served from AssetEditor */
+/*   Custom CSS Level:-1   */
+body, html {
+    background-color: #fff;
+}
+
+main { 
+	max-width:660px; 
+}
+.navbar, .formsection, .paymentmethodarea {
+    background-color: #fff;
+}
+
+#navmenu { 
+	max-width:660px; 
+}
+
+.formsection, .paymentmethodarea {
+	border: 1px solid #f9f9f9;
+}
+
+a.menubutton, .SubmitButton, .sliderbutton {
+	background-color: #2e8836;
+    border: 1px solid #2e8836;
+}
+
+a.menubutton:hover, .SubmitButton:hover, .sliderbutton:hover {
+	background-color: #14602b;
+    border: 1px solid #14602b;
+}
+
+#depositbanner, #payoutbanner {
+    background: #2A3052;
+}
+
+
+#depositbanner .help, #depositbanner a.simplebutton, #payoutbanner .help, #payoutbanner a.simplebutton {
+	background: #525d9a;
+	border: gray;
+	color: #fff;
+}
+
+.noticemsgsmall {
+	background-color:#FFFFFF;
+	color:#BA0000;
+}
+
+#newCustomerIcon {
+display: none;
+}
+
+html[data-action="PAYOUTREQUEST.ASP"]  .pmimagelisting .MasterCard{
+    display: none;
+}
+
+.D24MobileMoney {
+    background-image: url(../C_Common/images/processors/custom/D24MobileMoney.gif?v=3)
+}
+
+
+/* TEST CHANGES AFTER THIS LINE */
+
+/* Importing IBM Plex Sans font-family */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap');
+
+#stickyribbon {
+  box-shadow: unset !important;
+  position: inherit;
+}
+
+:root {
+  --white: #ffffff;
+  --light-gray: #f6f6f6;
+  --gray: #d6dadb;
+  --dark-gray: #9b9b9b;
+  --gray-border: #eee;
+  --black-text: rgba(0, 0, 0, 0.8);
+  --info-text: #333333;
+  --info-text-hover: #000;
+  --black: #0e0e0e;
+  --coral: #ff444f;
+  --coral-hover: #d43e47;
+  --teal: #85acb0;
+  --coral-transparent: #ff444f0d;
+  --dark-red: #cc2e3d;
+  --error: #e53935;
+  --orange: #ff6444;
+  --red: #ec3f3f;
+  --green: #4bb4b3;
+  --light-blue: #00bfff;
+  --aqua-blue: #2488d4;
+  --formrow-start-gap: 0;
+  --formrow-start-gap: 0;
+  --main-max-width: 650px;
+  --custom-body-bg: #ffffff;
+  --primary-border: #e6e9e9;        
+  --secondary-border: #f2f3f4;
+  --disabled: #d6d6d6;
+  --hover: #e6e9e9;
+  --button-text: #333333;
+  --active: #d6dadb;
+}
+
+:where(html.dark):root {
+  --info-text: #fff;
+  --info-text-hover: #fff;
+  --gray-border: #828282;
+  --light-gray: #212121;
+  --black-text: #fff;
+  --custom-body-bg: #0e0e0e;
+  --primary-border: #323738;
+  --secondary-border: #242828;
+  --disabled: #3e3e3e;
+  --hover: #242828;
+  --button-text: #c2c2c2;
+  --active: #323738;
+}
+
+.errorarea a:link,
+.panicmsgarea a:link,
+.warningarea a:link,
+.warningareasmall a:link {
+  color: var(--coral);
+}
+
+/* general */
+#AmountFormRow:before {
+  content: "Amount:";
+  color: var(--dark-gray);
+  font-size: 12px;
+  width: 100%;
+}
+
+label#dynamicAmtLabel {
+  display: none;
+}
+
+form .formrow label:after {
+  content: ":";
+}
+
+#FXdisplay:before {
+	content: "Amount:";
+  color: var(--dark-gray);
+  font-size: 12px;
+  width: 100%;
+}
+
+#FXdisplay label {
+	display: none;
+}
+
+#FXdisplay {
+	width: 275px;
+    margin: 0 auto 24px;
+}
+
+body,
+html {
+  background-color: var(--custom-body-bg);
+  overflow-x: hidden;
+  /* Mozilla Firefox scrollbar styling*/
+  scrollbar-width: thin;
+  scrollbar-color: var(--disabled) transparent;
+}
+
+* {
+  font-family: 'IBM Plex Sans', Roboto, sans-serif;
+}
+
+header {
+  background-color: unset;
+}
+.spinner svg,
+input#CVV ~ .webapphidden,
+#SubmitBtn .fa-lock,
+.errorarea .smalltext div:nth-child(even),
+.warningarea .smalltext div:nth-child(even):not(.infomsgsmall),
+html[data-action="DEPOSITS.ASP"] .freetextarea,
+form[action="./PayoutReview.asp"] .formheader,
+form[action="./PayoutRequest.asp#"]
+  .formarea
+  .formsection
+  .formrow:nth-child(3),
+form[action="./PayoutRequest.asp#"]
+  .formarea
+  .formsection
+  .formrow:nth-child(4),
+form[action="./PayoutRequest.asp#"] .formarea .formsection .formheader,
+form[action^="./PayoutDetails.asp"] .formheader,
+form[action^="./PayoutDetails.asp"] .formrow.centertext,
+form[action^="./PayoutDetails.asp"] .formelement.fineprint,
+.formsection .formheader,
+.formarea .mobilehidden,
+#payoutbanner #payoutfiltertexttitle,
+#payoutbanner .normaltext.mobilehidden,
+#payoutbanner a,
+#depositbanner,
+.paymentmethodarea .learnmore,
+hr.freetextarealine,
+.freetextarea,
+.trustmarks,
+.freetextarea.copyright,
+.paymentimgborder + div,
+#contextmenu,
+a[href="javascript:print()"],
+.paymentmethodarea:is(#PayoutOptionCFT) .bigtext,
+.paymentmethodarea:is(#PayoutOptionCFT) .payoutdetails,
+.paymentmethodarea:is(#PayoutOptionadvcash) .bigtext,
+.paymentmethodarea:is(#PayoutOptionadvcash) .payoutdetails,
+.recentpaymentmethodarea {
+  display: none;
+}
+
+a,
+a:visited,
+a:link {
+  color: var(--coral);
+}
+
+a:not(.menubutton):not(.simplebutton):hover {
+  text-decoration: underline;
+}
+
+
+
+/* Remove default payout search icon */
+
+a[href^="PayoutReview.asp"] .fa.fa-search:before {
+  content: "";
+}
+
+#AmountDisplay {
+  font-size: 16px;
+}
+
+.amountholder.totalamount .currencySymbol {
+  margin-right: 5px;
+  font-size: unset;
+  vertical-align: unset;
+  padding-inline-end: unset;
+}
+
+#amountTooltip input {
+  font-weight: bold;
+  font-size: 20px !important;
+  width: 8em !important;
+  text-align: center;
+}
+
+#amountTooltip input::placeholder {
+  color: #f2f3f4;
+}
+
+#cmBalance .longformelement.bolded {
+  font-weight: unset;
+}
+
+#cmPayoutMethod {
+  margin: -7px 0;
+}
+
+#cmPayoutMethod .longformelement span {
+  visibility: hidden;
+}
+
+#cmPayoutMethod .longformelement span .spritepp {
+  visibility: visible;
+}
+
+#cmPayoutMethod .longformelement .spritepp {
+  position: absolute;
+}
+
+#cmPaymentMethod {
+  position: relative;
+}
+
+#cmPaymentMethod .altSkrill {
+  top: -5px;
+}
+
+#Comments {
+  padding: 0 5px;
+	line-height: 34px;
+}
+
+.CSCtip {
+  position: relative;
+  left: 17px;
+  top: 3px;
+  transform: translateX(-50%);
+}
+
+.doubleup {
+  display: flex;
+  width: 275px;
+  margin: 0 auto;
+}
+
+.doubleup > .formrow {
+  flex-direction: initial;
+}
+
+.doubleup .formrow * {
+  width: auto !important;
+}
+
+.doubleup .formrow:first-child {
+  margin-right: 14px;
+}
+
+form[action="./PayoutRequest.asp#"] .formsection .amountholder {
+  font-size: 20px;
+  line-height: 30px;
+  width: auto;
+  font-weight: bold;
+}
+
+form .formrow {
+  flex-direction: column;
+  align-items: center;
+  width: 275px;
+  margin: 0 auto 24px;
+}
+
+
+form[action="./PayoutRequest.asp#"] .formrow label:after {
+  content: "";
+}
+
+.formsection {
+  box-shadow: none;
+  margin: 0 auto;
+}
+/*
+form[action="./PayoutRequest.asp#"] .formsection {
+  padding: 24px 43px;
+}
+*/
+.fineprint a {
+  color: var(--aqua-blue) !important;
+  text-decoration: underline;
+}
+
+input#CVV {
+  border: none;
+  border-bottom: 1px solid var(--gray);
+}
+
+.labelelement a[href^="PayoutReview.asp"] {
+  color: var(--dark-gray);
+  pointer-events: none;
+}
+
+.minilimitstext {
+  color: var(--dark-gray) !important;
+  font-variant: none;
+}
+
+.noticemsgsmall {
+  color: var(--button-text);
+  background: rgba(255, 173, 58, 0.16);
+  padding: 8px !important;    
+  padding-left: 32px !important;
+  font-size: 12px !important;
+}
+
+.paymentimgborder {
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.paymentmethodarea .bigtext:hover {
+  color: var(--info-text-hover);
+}
+
+.payouttimeframe {
+  display: none;
+}
+
+.pwrdbytext {
+  font-size: 0.85em;
+}
+
+/* Custom payout search icon */
+
+span.valueelement a[href^="PayoutReview.asp"] {
+  display: inline-block;
+  height: 32px;
+  width: 16px;
+  line-height: 32px;
+  padding-left: 12px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAYAAACEYr13AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGYSURBVHgBlVRRTsJAEJ3ZthriD94Ab8CHQj9JvICeAD0B+qdCQkngG25gPYIXQD6RL46gJ4APFQPbXWdK17SlxTrJbqc7M2/fvN0Wa/fyAix4RIAy7DEN6M36Vi+9LlDA8K9iNgTt1TpBd2e93pGande+jXnFbnvjacRuFhMBBWw6cDzUupfFpBDAPpDCAHkgdlYi9dzgnkmcaiTwRGvwZwP7iUEoDhxnkB0GLqFS8IXcRux0GojgG9oMYvITAGcP6ytNqCFFolr6sI55CK1uDe1TYhevSbQghGiGDhVMBwejWGhEtMtM29oe5ySTAVPlqfTp+Kl1+HZsA1hNbBp/IdGW8E9LAJBoc35+HcmbdOKhVM3IncfXExqwcNQnKY7denu9LDmOHwJK1YJIXNLn2fVIahnsMqDjmZiLAiiGKxkseKAp3pa0qNeTzBYiEA+Vuga+PKRJpAv7l1T4Rn1WaPfxL+siX6Mx925V0ZYzJpB8BnlGG6G2nXcMNuchE8Og1pGLIj+UTCMgIRRd0xhibmpq0LRAoXo/GePA56Dp29UAAAAASUVORK5CYII=)
+    no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+#timerCount {
+  visibility: hidden;
+}
+
+.totalamount {
+  font-weight: bold;
+  border-top: unset;
+}
+
+.webapphidden > a:hover {
+  text-decoration: none !important;
+}
+
+/* Back button */
+
+#nav-backbtn .menubutton {
+  box-shadow: none;
+  padding-right: 4px;
+  background: none;
+  color: var(--coral);
+  border: none;
+  padding-top: 9px;
+  font-weight: bold;
+  height: 33px;
+  content: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23979797' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M8 1L1 8l7 7M1 8h14'/%3E%3C/g%3E%3Cpath fill='%23333' d='M3.414 7H15a1 1 0 0 1 0 2H3.414l5.293 5.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 1 1 1.414 1.414L3.414 7z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Error area */
+
+.errorarea,
+.warningarea {
+  color: var(--error) !important;
+  background-color: var(--custom-body-bg);
+  border-style: solid !important;
+  border-color: var(--error) !important;
+  border-radius: 4px !important;
+  border-width: 2px !important;
+}
+
+.errorarea .smalltext,
+.warningarea .smalltext {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.errorarea .smalltext div,
+.warningarea .smalltext div {
+  margin-bottom: 8px;
+}
+
+.errorarea .normaltext {
+  color: var(--black-text);
+}
+
+.errorarea .smalltext div:last-child,
+.warningarea .smalltext div:last-child {
+  margin-bottom: 0;
+}
+
+.errorarea .smalltext strong,
+.warningarea .smalltext strong {
+  font-size: 16px;
+  color: var(----error);
+}
+
+.errorarea ul,
+.warningarea ul {
+  margin-left: 7px;
+  font-weight: bold;
+}
+
+.normaltext {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Payout details section */
+
+.paymentmethodarea .payoutdetails {
+  grid-row-start: 3;
+  grid-column-start: 2;
+  justify-content: left;
+  color: var(--dark-gray);
+  font-size: 12px;
+}
+.paymentmethodarea .payoutdetails .payoutlimits {
+  display: flex;
+  line-height: 14px;
+}
+.paymentmethodarea .payoutdetails .payoutlimits-max {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.paymentmethodarea .payoutdetails .payoutlimits-min span:after {
+  content: "-";
+}
+.paymentmethodarea .payoutdetails .payoutlimits-min span:first-letter {
+  opacity: 0;
+  margin-left: -10px;
+}
+.paymentmethodarea .payoutdetails .payoutlimits-max span:first-letter {
+  opacity: 0;
+  margin-left: -8px;
+}
+
+.smalltext {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+a:focus,
+button:focus {
+  box-shadow: none !important;
+}
+
+/* Form general */
+
+.formrow:not(.nowrapflex) {
+  -webkit-margin-before: 0;
+  margin-block-start: 0;
+}
+
+form .formrow label,
+form .formrow .formlabel {
+  font-size: 12px !important;
+  text-align: left;
+}
+
+.formrow .shortformlabel {
+  width: 49%;
+}
+
+.formrow .formelement,
+.formrow .labelelement {
+  width: 100% !important;
+  color: var(--dark-gray);
+}
+
+.formrow .formelement {
+  justify-content: flex-start;
+}
+
+.formrow .longformelement {
+  position: relative;
+}
+
+.formrow .formelement .minilimits {
+  position: relative;
+  transform: none;
+  left: 5px;
+  bottom: -10px;
+}
+
+.formrow .longformelement .spritepp {
+  visibility: visible;
+}
+
+#cmPaymentMethod .longformelement {
+  visibility: hidden;
+}
+
+#cmPaymentMethod .longformelement .spritepp {
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+/* jBox */
+.jBox-Notice .jBox-container {
+  background-color: var(--light-gray) !important;
+}
+
+/* Deposit form */
+
+form[action$="Deposit.asp"] .formrow .formlabel,
+form[action$="Deposit.asp"] .formsection label {
+  display: inline-block;
+  text-align: left;
+  width: 275px;
+  margin: 0;
+  padding: 0 !important;
+  color: var(--dark-gray);
+  position: relative;
+  top: 2px;
+  background: transparent !important;
+}
+
+form[action$="Deposit.asp"] .formelement .normaltext{
+	direction: rtl;
+}
+
+/* CC Deposit form */
+
+form[action="CC_Deposit.asp"] .formarea input#btnCustomListBox {
+  margin-left: 0;
+  bottom: 2px;
+  left: 0;
+  font-size: 2rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+form[action="CC_Deposit.asp"] .formarea input#btnCustomListBox::hover {
+  border-bottom-color: var(--light-gray) !important;
+}
+
+form[action="CC_Deposit.asp"] .formarea input#cardnumber {
+  width: 236px;
+  padding-inline-start: 5px !important;
+  -webkit-padding-start: 5px !important;
+  background: none !important;
+}
+
+/* Fix bug with arrow for credit card input field - deposit */
+
+form[action="/cashier/C_Deposit.asp"] .formrow.lefttext {
+  font-size: 12px;
+}
+
+form[action="CC_Deposit.asp"] .formarea .formrow .formelement {
+  position: relative;
+}
+
+/* Payout details form */
+
+form[action="./PayoutDetails.asp"]
+  .formrow.nowrapflex:nth-child(2n)
+  .amountholder {
+  visibility: hidden;
+  position: absolute;
+}
+
+form[action="./PayoutDetails.asp"]
+  .formrow.nowrapflex:nth-child(2n)
+  .amountholder::before {
+  content: "Free!";
+  visibility: visible;
+  bottom: 3px;
+  position: relative;
+}
+
+form[action="./PayoutDetails.asp"] .formrow.nowrapflex .webapphidden {
+  margin-left: 35px;
+}
+
+form[action^="./PayoutDetails.asp"] .formsection:first-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+form[action^="./PayoutDetails.asp"] .formrow > span.formelement {
+  margin-bottom: 16px;
+}
+
+form[action^="./PayoutDetails.asp"] .formrow > .formlabel {
+  text-align: left;
+}
+
+form[action^="./PayoutDetails.asp"] .formrow.lefttext.smalltext {
+  max-width: 320px;
+  margin: 0 auto 25px auto;
+  padding-left: 24px;
+  line-height: 1.5;
+}
+
+form[action^="./PayoutDetails.asp"] .formsection:last-child {
+  margin-top: 0;
+}
+
+form[action^="./PayoutDetails.asp"] .nowrapflex > .labelelement {
+  text-align: right;
+  width: 94px !important;
+}
+
+form[action^="./PayoutDetails.asp"]
+  .nowrapflex
+  > .valueelement
+  > .amountholder {
+  width: auto !important;
+}
+
+form[action^="./PayoutDetails.asp"]
+  .nowrapflex
+  > .valueelement
+  > span[title="24 hours"] {
+  text-align: left !important;
+}
+
+form[action^="./PayoutDetails.asp"] .nowrapflex > .valueelement {
+  color: var(--black-text) !important;
+}
+
+form[action^="./PayoutDetails.asp"] .formrow,
+form[action^="./PayoutRequest.asp"] .formrow {
+  margin-bottom: 0;
+}
+
+form[action^="./PayoutDetails.asp"] .formrow > label {
+  text-align: left;
+  color: var(--dark-gray);
+}
+
+form[action^="./PayoutDetails.asp"] .formrow:nth-last-child(2) textarea {
+  border-color: var(--gray);
+}
+
+form[action^="./PayoutDetails.asp"] .formrow:nth-last-child(2) textarea:hover {
+  border-color: rgba(0, 0, 0, 0.45) !important;
+}
+
+form[action^="./PayoutDetails.asp"] .formrow:nth-last-child(2) textarea:focus {
+  border-color: rgba(0, 0, 0, 0.45) !important;
+}
+
+form[action^="./PayoutDetails.asp"] .formrow > label[for="Comments"] {
+  margin-top: -11px;
+}
+
+form[action^="./PayoutDetails.asp"] span[title="24 hours"] {
+  font-size: 14px;
+  width: 160px;
+  display: inline-block;
+  text-align: right;
+}
+
+/* Fix bug with arrow for credit card input field - withdraw */
+
+form[action="./PayoutDetails.asp"] .formarea .formrow .formelement {
+  position: relative;
+}
+
+form[action="./PayoutDetails.asp"] .formarea input#btnCustomListBox {
+  margin-left: 0;
+  bottom: 3px;
+  left: 0;
+  font-size: 2rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+form[action="./PayoutDetails.asp"] .formarea input#btnCustomListBox::hover {
+  border-bottom-color: var(--light-gray) !important;
+}
+
+form[action="./PayoutDetails.asp"] .formarea input#cardnumber {
+  width: 236px;
+  padding-inline-start: 0 !important;
+  -webkit-padding-start: 0 !important;
+}
+
+/* Help button */
+
+.help {
+  display: inline;
+  background: none;
+  border: none;
+  font-weight: bold;
+}
+
+.help:hover {
+  background-color: transparent;
+  text-decoration: none;
+  color: var(--coral);
+}
+
+/* INPUTS */
+input,
+select {
+  padding-left: 5px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--gray) !important;
+  border-radius: 0 !important;
+}
+input:not([type="submit"]):not([type="button"]),
+select {
+  border-color: var(--gray);
+  /* background-color: transparent !important; */
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--dark-gray);
+}
+input[type]:focus,
+select:focus {
+  border-color: var(--teal) !important;
+}
+input[type]:focus,
+select:focus {
+  box-shadow: none;
+  caret-color: var(--teal);
+}
+input#cardnumber,
+input#CVV,
+input#password,
+input[type="password"] {
+  background-image: none !important;
+  
+}
+#depositbanner .help,
+#payoutbanner .help,
+.help:hover,
+.warningarea .help:hover,
+.warningareasmall .help:hover {
+  color: var(--coral);
+}
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="tel"],
+input[type="text"],
+select {
+  height: 32px;
+  line-height: 2em;
+}
+
+input#convertedamount {
+  font-size: 16px;
+  flex: unset;
+  min-width: 5em;
+  padding-right: 0;
+}
+
+input#chargeamount {
+  font-size: 16px;
+  min-width: 5em;
+  padding-right: 0;
+  flex: unset;
+}
+
+/*
+select#CurrencyCode {
+  max-width: 6em;
+}
+*/
+
+/* Marquee */
+
+ul.marquee {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 16%);
+  margin: 10px 0;
+  background: none;
+}
+
+ul.marquee:hover {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 16%);
+  background: none;
+}
+
+ul.marquee li {
+  color: var(--black-text);
+  font-weight: bold;
+}
+
+ul.marquee:hover li {
+  color: color var(--black-text);
+}
+
+/* Messages */
+
+.infomsg,
+.errorarea,
+.warningarea,
+.noticemsgsmall,
+.infomsgsmall,
+.panicmsgarea {
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 16px;
+  padding-left: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px auto;
+}
+
+.infomsg .bigtext,
+.errorarea .bigtext,
+.warningarea .bigtext {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.infomsg:before,
+.errorarea:before,
+.warningarea:before,
+.noticemsgsmall:before,
+.infomsgsmall:before,
+.panicmsgarea:before {
+  font-size: 16px;
+  display: inline-block;
+  position: absolute;
+  left: 24px;
+  animation: none;
+}
+
+.infomsgsmall:before {
+  padding: 10px 0;
+}
+
+.errorarea:before {
+  margin-top: 2px;
+}
+
+.navbar {
+  position: unset;
+  transform: unset !important;
+}
+.navbar,
+.formsection,
+.paymentmethodarea {
+  /*background-color: unset;*/
+  background-color: var(--custom-body-bg);
+  backdrop-filter: unset;
+}
+
+/* Deposit payment method details */
+
+#depositoptions .paymentmethodarea {
+  flex-wrap: unset;
+  width: 100%;
+  max-width: unset;
+  align-items: unset;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.learnmore:hover ~ .paymentmethoddetails {
+  display: block;
+}
+
+.paymentmethoddetails {
+  padding: 0;
+  display: grid;
+  margin-block-end: 0;
+  border-top: 0;
+  pointer-events: none;
+  font-size: 12px;
+}
+
+#depositoptions .paymentlinks,
+#depositoptions .paymentmethoddetails a,
+#depositoptions .paymentmethoddetails br,
+#depositoptions .paymentmethoddetails #creditcardbrands,
+#depositoptions .paymentmethoddetails .webapphidden {
+  display: none;
+}
+
+.paymentmethodfeecalc {
+  visibility: hidden;
+  display: inline-block;
+  text-align: right;
+  flex-grow: 1;
+  pointer-events: none;
+  width: 100%;
+  color: var(--dark-gray);
+  position: relative;
+}
+
+.payoutfees {
+  display: none;
+}
+
+.payoutfees .paymentmethodfeecalc::after {
+  visibility: visible;
+  position: absolute;
+  right: 15px;
+}
+
+.paymentmethodarea {
+  overflow: visible;
+  min-height: auto;
+  height: auto;
+  width: calc((100% / 4) - 0px);
+  max-width: calc((100% / 4) - 1px);
+  min-width: 160px;
+  border-bottom: 1px solid var(--gray-border);
+  padding: 16px;
+  box-shadow: 0px 1px 0px 0px var(--secondary-border) inset, 0px -1px 0px 0px var(--secondary-border) inset;
+}
+
+a.paymentbutton {
+  box-shadow: unset;
+  border: none;
+  border-radius: 4px;
+  width: 96px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  margin: 0 16px 0 5px;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  margin-block-end: 0 !important;
+}
+a.paymentbutton .spritepp {
+  margin: 32px 10px;
+}
+
+a.paymentbutton:hover {
+  box-shadow: unset;
+  transform: unset;
+  border-color: unset;
+}
+
+#payoutoptions .paymentmethodarea {
+  width: 100%;
+  min-width: unset;
+  max-width: unset;
+  min-height: unset;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+#payoutbanner .normaltext {
+  display: none;
+}
+
+#payoutbanner .bannertexttitle {
+  font-size: 0;
+  margin-bottom: 8px;
+}
+
+#payoutbanner .bannertexttitle:before {
+  content: "1";
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background: var(--coral);
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+#payoutbanner .bannertexttitle:after {
+  content: "Enter withdrawal amount";
+  font-size: 14px;
+  color: var(--info-text);
+  margin-left: 8px;
+}
+
+#payoutoptions {
+  margin-top: 68px;
+}
+
+div#payoutoptions:after {
+  order: -1;
+  content: "2";
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background: var(--coral);
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+  position: sticky;
+  margin-top: -42px;
+}
+
+div#payoutoptions:before {
+  content: "Select a payment method below";
+  font-size: 14px;
+  color: var(--info-text);
+  width: calc(100% - 32px - 12px);
+  line-height: 24px;
+  position: sticky;
+  margin-left: 32px;
+  margin-top: -42px;
+}
+
+/* Payout banner */
+
+#payoutbanner {
+  background: none;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0 0 24px;
+  --text-color: unset;
+}
+
+/* sliderbutton */
+
+.sliderbutton {
+  background: none;
+  border: none;
+  vertical-align: bottom;
+  height: 32px;
+  width: 37px;
+  text-decoration: none;
+  text-indent: -9999px;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  bottom: 0 !important;
+  position: inherit;
+}
+
+input.sliderbutton {
+  color: transparent;
+  border-bottom: 1px solid var(--gray) !important;
+}
+input.sliderbutton {
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='12px' height='6px' viewBox='0 0 12 6' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com --%3E%3Ctitle%3EPath 12%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Symbols' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' fill-opacity='0.8'%3E%3Cg id='icons/dropdown/normal/normal-normal' transform='translate(-2.000000, -5.000000)' fill='%238E7D83'%3E%3Cpath d='M13.1636636,5.13002996 C13.3679924,4.9442765 13.6842166,4.95933479 13.86997,5.1636636 C14.0557235,5.36799241 14.0406652,5.68421657 13.8363364,5.86997004 L8.3363364,10.86997 C8.14562578,11.0433433 7.85437422,11.0433433 7.6636636,10.86997 L2.1636636,5.86997004 C1.95933479,5.68421657 1.9442765,5.36799241 2.13002996,5.1636636 C2.31578343,4.95933479 2.63200759,4.9442765 2.8363364,5.13002996 L7.99999647,9.8242696 L13.1636636,5.13002996 Z' id='Path-12'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+input.sliderbutton:hover {
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='12px' height='6px' viewBox='0 0 12 6' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com --%3E%3Ctitle%3EPath 12%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Symbols' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='icons/dropdown/normal/normal-normal' transform='translate(-2.000000, -5.000000)' fill='%23FF444F'%3E%3Cpath d='M13.1636636,5.13002996 C13.3679924,4.9442765 13.6842166,4.95933479 13.86997,5.1636636 C14.0557235,5.36799241 14.0406652,5.68421657 13.8363364,5.86997004 L8.3363364,10.86997 C8.14562578,11.0433433 7.85437422,11.0433433 7.6636636,10.86997 L2.1636636,5.86997004 C1.95933479,5.68421657 1.9442765,5.36799241 2.13002996,5.1636636 C2.31578343,4.95933479 2.63200759,4.9442765 2.8363364,5.13002996 L7.99999647,9.8242696 L13.1636636,5.13002996 Z' id='Path-12'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+input.sliderbutton,
+input.sliderbutton:hover {
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* SPINNER */
+.spinner {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: var(--custom-body-bg);
+  /*background-color: #ffffffbf;*/
+  animation: none;
+  margin: 0;
+  transform: none;
+  border: none;
+  z-index: 101;
+}
+
+.spinner:before {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: -35px 0 0 -35px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border-top: 8px solid var(--coral);
+  border-right: 8px solid var(--coral-transparent);
+  border-bottom: 8px solid var(--coral-transparent);
+  border-left: 8px solid var(--coral-transparent);
+  box-sizing: content-box;
+  animation-name: spin;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Submit Button */
+
+.AltButton {
+  font-size: 14px;
+}
+
+form[action="./PayoutReview.asp"] {
+  min-height: 12em;
+}
+
+.SubmitButton {
+        width: fit-content;
+    min-width: 40%;
+}
+
+.SubmitButton,
+a.simplebutton {
+  box-shadow: none;
+  background: none;
+  background-color: var(--coral);
+  color: var(--white);
+  display: flex;
+  text-shadow: none;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+}
+
+.SubmitButton:hover,
+a.simplebutton:hover {
+  box-shadow: none;
+  background: none;
+  background-color: var(--coral-hover);
+  color: var(--white);
+  text-shadow: none;
+  border: none;
+}
+
+/* scrollbar*/
+body::-webkit-scrollbar {
+        width: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+        background: var(--disabled);
+        border-radius: 4px;
+}
+
+/* Button set*/
+.buttonset input[type=radio]:checked+label {
+        background: var(--active);
+        border-color: var(--active);
+}
+
+.buttonset label:hover {
+        background: var(--hover) !important;
+        border-color: var(--hover) !important;
+        color: var(--info-text) !important;
+}
+
+.buttonset label {
+        color: var(--button-text) !important;
+}
+
+/* Top payment method area */
+.toppaymentmethodarea {
+    padding: 8px;
+    min-height: 144px;
+    max-height: 144px;
+}
+
+/* Top payment button */
+
+.toppaymentbutton {
+  border: 2.425px solid var(--primary-border) !important;
+  background: var(--custom-body-bg);
+  box-shadow: 0px 9.69811px 14.54717px -4.84906px rgba(14, 14, 14, 0.03), 0px 29.09434px 38.79245px -9.69811px rgba(14, 14, 14, 0.08);
+}
+
+.toppaymentbutton:focus {
+  border-color: var(--active) !important;
+}
+
+.toppaymentbutton:hover {
+  border: var(--hover) !important;
+  background: var(--hover);
+  box-shadow: none !important;
+}
+
+.toppaymentbutton.more {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.toppaymentbutton.more span {
+  color: var(--primary-border);
+}
+
+.toppaymentbutton.more:hover span {
+  color: var(--primary-border) !important;
+}
+
+/*Submit button*/
+.fa-chevron-right {
+        display: none
+}
+
+/*E-wallet signup button for Advcash*/
+a.simplebutton[href="https://wallet.advcash.com/register"] {
+        display: none;
+}
+
+/*Tnx tables*/
+
+#txnreviewtable {
+  font-size: 12px;
+  background: none;
+  margin-bottom: 20px !important;
+}
+
+#txnreviewtable .txnreviewrowodd {
+  background: none;
+}
+
+#txnreviewtable .txnreviewroweven {
+  background: var(--light-gray);
+}
+
+#txnreviewtable th {
+  text-align: left;
+  border: none !important;
+  background: none;
+  font-weight: bold;
+  padding: 12px 0;
+}
+
+#txnreviewtable td {
+  text-align: left;
+}
+
+#txnreviewtable .txnreviewtd {
+  border: none;
+  padding: 16px 4px;
+  text-align: left !important;
+  vertical-align: middle;
+}
+
+#txnreviewtable .commentstext {
+  font-size: 10px;
+  line-height: 10px;
+  padding: 4px 1px 16px;
+  opacity: 0.4;
+}
+
+td.valigntop.txnreviewtd:first-child {
+  padding-left: 12px !important;
+}
+
+#txnreviewtable th:first-child {
+  padding-left: 12px !important;
+}
+
+td.valigntop.txnreviewtd:last-child {
+  padding-right: 12px !important;
+}
+
+#txnreviewtable th:last-child {
+  padding-right: 12px !important;
+}
+
+#txnreviewtable .mobilehidden {
+  display: block;
+}
+
+.errorarea .smalltext a.linkline {
+  display: none;
+}
+
+.warningarea .smalltext div strong {
+  color: var(--error);
+}
+
+#AccountIdentifier {
+  background: rgba(255, 255, 255, 0);
+  text-transform: none !important;
+}
+
+/*formlabels*/
+@media (min-width: 501px) {
+  .formrow .formlabel,
+  .formsection label {
+    width: 44%;
+  }
+
+  /* Custom payout limit details */
+
+  .paymentmethodarea .payout-limit:after {
+    content: "|";
+    margin: 0 4px;
+  }
+  .paymentmethodarea .payoutdetails {
+    position: absolute;
+    bottom: 18px;
+    left: 150px;
+  }
+  .paymentmethodarea:is(#PayoutOptionBeyonicMT, #PayoutOptionD24BankTransfer)
+    .payoutdetails {
+    left: 167px;
+  }
+  .paymentmethodarea:is(#PayoutOptionhelp2pay) .payoutdetails {
+    left: 170px;
+  }
+  .paymentmethodarea:is(#PayoutOptionDragonPhBT, #PayoutOptionBTT)
+    .payoutdetails {
+    left: 0;
+  }
+  .paymentmethodarea:is(#PayoutOptionCFT) .payoutdetails {
+    left: 174px;
+  }
+}
+
+/* Fix bug with payout table form on mobile */
+@media (max-width: 500px) {
+  form[action="CC_Deposit.asp"] .formarea input#btnCustomListBox {
+    bottom: 6px;
+  }
+  form[action="./PayoutDetails.asp"] .formarea input#btnCustomListBox {
+    bottom: 6px;
+  }
+  .formarea > .valueelement {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .formarea div.errorarea {
+    margin-top: 50px;
+  }
+}
+
+#depositoptions,
+#payoutoptions {
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 0;
+}
+
+.paymentmethodarea .bigtext {
+  color: var(--info-text);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+  text-align: left;
+  padding: 0;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  min-height: unset !important;
+}
+
+#depositoptions a + a + .bigtext:before {
+  position: absolute;
+  top: 20px;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+}
+#depositoptions a + a + .bigtext:after {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  font-weight: normal;
+  color: #999;
+  font-size: 12px;
+}
+
+form[action="./PayoutRequest.asp#"] .formsection {
+  display: flex;
+}
+form[action="./PayoutRequest.asp#"] .formrow.nowrapflex {
+  flex-direction: column !important;
+  flex: 1;
+}
+form[action="./PayoutRequest.asp#"] .formrow .labelelement {
+  font-size: 16px !important;
+  line-height: 24px;
+  text-align: center;
+}
+form[action="./PayoutRequest.asp#"] .formrow .valueelement {
+  width: unset;
+  flex-grow: unset;
+}
+#amountTooltip {
+  margin-left: 34px;
+}
+
+.successContainer + .formheader {
+  display: block;
+}
+@media (min-width: 500px) {
+  .totalamount .decimalSection {
+    font-size: 20px;
+	  vertical-align: unset !important;
+  }
+}
+@media (max-width: 500px) {
+  a.paymentbutton {
+    width: 64px;
+    height: 40px;
+    margin: 0 8px;
+  }
+  #depositoptions a + a + .bigtext,
+  #payoutoptions a + .bigtext {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  form[action="./PayoutRequest.asp#"] .formsection {
+    flex-direction: column;
+  }
+  #txnreviewtable {
+    margin: 0;
+  }
+  .paymentmethodarea {
+    padding: 8px;
+  }
+  form[action="./PayoutRequest.asp#"] .formrow .labelelement {
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+  .formsection .amountholder,
+  .totalamount .decimalSection {
+    font-size: 16px !important;
+    line-height: 24px !important;
+    vertical-align: unset !important;
+  }
+  #nav-backbtn {
+    left: 9%;
+    bottom: 120px;
+  }
+  html[data-action="PAYOUTDETAILS.ASP"] a.simplebutton {
+    margin-bottom: -8px;
+  }
+}
+
+.payout-limit,
+.deposit-limit,
+.inline-payout-limit{
+  color: #999999;
+  line-height: 18px;
+}
+form[action^="./PayoutDetails.asp"] .payout-limit {
+  display: none;
+}
+.payout-limit:not(.has-note),
+.deposit-limit:not(.has-note) {
+  margin-top: 26px;
+}
+
+.deposit-note {
+  color: var(--coral);
+  font-size: 10px;
+  line-height: 14px;
+  margin: 8px 0 4px;
+}
+
+@media (max-width: 500px) {
+  #amountTooltip input {
+    font-size: 16px !important;
+  }
+
+  .paymentmethoddetails {
+    font-size: 10px;
+  }
+
+  .payout-limit,
+  .deposit-limit {
+    line-height: 14px;
+  }
+
+  .paymentmethodarea .payoutdetails .payoutlimits {
+    font-size: 10px;
+  }
+}
+
+.paymentmethodarea:is(#PayoutOptionCFT) ,
+.paymentmethodarea:is(#PayoutOptionadvcash) {
+    grid-template-rows: max-content;
+ }
+
+.paymentmethodarea:is(#PayoutOptionadvcash) .paymentmethoddetails:before {
+	content: "Advcash";
+}
+
+.paymentmethodarea:is(#PayoutOptionCFT) .paymentmethoddetails:before {
+	content: "Credit & Debit Cards";
+}
+
+.paymentmethodarea:is(#PayoutOptionadvcash) .paymentmethoddetails:before,
+.paymentmethodarea:is(#PayoutOptionCFT) .paymentmethoddetails:before {
+	color: var(--info-text);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+	grid-column-start: 1;
+}
+
+.paymentmethodarea:is(#PayoutOptionadvcash) .inline-payout-limit{
+	margin-top: 26px;
+}
+
+html[data-action="CASHIERMENU.ASP"] .amountholder{
+	 font-size: 20px !important;
+	font-weight: bold;
+}
+
+ html[data-action="CUSTOMERDETAILS.ASP"] form .formrow {
+  flex-direction: column;
+  align-items: center;
+  width: 275px;
+  margin: 0 5px 24px;
+}
+
+ html[data-action="CUSTOMERDETAILS.ASP"] .doubleup {
+  display: flex;
+  width: 275px;
+  margin: 0 5px;
+}
+
+#pmfilter {
+	display: flex;
+}
+
+#nav-cashierbtn{
+	display: none !important;
+}
+
+/*#nav-depositbtn{
+	display: none !important;
+}*/
+
+form[action="PerfectM_Deposit.asp"] .simplebutton {
+display: none;
+}
+
+.noticemsgsmall:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  top: 9px;
+  left: 9px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzg2MTBfMTA0KSI+CjxwYXRoIGQ9Ik04IDBDMTIuNDE4MyAwIDE2IDMuNTgxNzIgMTYgOEMxNiAxMi40MTgzIDEyLjQxODMgMTYgOCAxNkMzLjU4MTcyIDE2IDAgMTIuNDE4MyAwIDhDMCAzLjU4MTcyIDMuNTgxNzIgMCA4IDBaTTguMDAyOTUgMTAuNjY2N0M3LjYzNzM3IDEwLjY2NjcgNy4zMjE5MSAxMC43OTY5IDcuMDU5NTIgMTEuMDU5QzYuNzk5MzQgMTEuMzIwMyA2LjY2NjY3IDExLjYzNjEgNi42NjY2NyAxMi4wMDMyQzYuNjY2NjcgMTIuMzcxIDYuNzk4NiAxMi42ODYgNy4wNTk1MiAxMi45NDQ5QzcuMzIxOTEgMTMuMjAzOSA3LjYzNzM3IDEzLjMzMzMgOC4wMDI5NSAxMy4zMzMzQzguMzY5MjYgMTMuMzMzMyA4LjY4MjUxIDEzLjIwMzkgOC45NDI2OSAxMi45NDQ5QzkuMjAyODcgMTIuNjg2IDkuMzMzMzMgMTIuMzcxOCA5LjMzMzMzIDEyLjAwMzJDOS4zMzMzMyAxMS42MzYxIDkuMjAyODcgMTEuMzIwMyA4Ljk0MjY5IDExLjA1OUM4LjY4MzI1IDEwLjc5NjkgOC4zNjkyNiAxMC42NjY3IDguMDAyOTUgMTAuNjY2N1pNNy42ODU4MSAyLjY5OTJDNy4wNTc0MyAyLjg1NTkxIDYuNjY2NjcgMy4zNTM2OSA2LjY2NjY3IDMuOTU3NDhDNi42OTgzNSA0LjMyMTYgNi43MjQ3NSA0LjY5MDMyIDYuNzU2NDQgNS4wNTQ0NEM2Ljg0NjIgNi40NDE3OCA2LjkzNTk3IDcuODAxNDYgNy4wMjU3NCA5LjE4ODhDNy4wNTc0MyA5LjY1ODkzIDcuNDc0NTkgMTAgOC4wMTMyIDEwQzguNTUxODIgMTAgOC45NzQyNiA5LjYzNTg4IDkuMDAwNjYgOS4xNjExNUM5LjAwMDY2IDguOTk1NTEgOS4wMTkwMiA4LjQ0NDM1IDkuMDMyMzQgOC4zMjIyOUM5LjA5MDQzIDcuNDMyNzQgOS4xNTM4IDYuNTQzMTggOS4yMTE4OCA1LjY1MzYzTDkuMzMzMzMgMy45MjUyMkM5LjMzMzMzIDMuNzE3ODEgOS4zMDE2NSAzLjUzMzQ0IDkuMjExODggMy4zNDkwOEM4Ljk0MjU3IDIuODMyODYgOC4zMTQxOSAyLjU3MDE0IDcuNjg1ODEgMi42OTkyWiIgZmlsbD0iI0ZGQUQzQSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzg2MTBfMTA0Ij4KPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=);
+}
+
+.ForgetPMInfoBtn {
+	display: none;
+}
+
+.formsection, .paymentmethodarea {
+	border: 0px;
+}
+
+main {
+    padding: 0px;
+}
+
+.floatright{
+	float: unset;
+}
+
+@media (max-width: 552px){
+	.pmimagelisting{
+			justify-content: center!important;
+	}
+}
+
+html[data-action="PAYOUTREQUEST.ASP"]  .pmimagelisting .MasterCard{
+    display: none;
+}
+
+
+
+
+	</style>
+	<link rel="preload" href="include/css/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">	<link rel="preload" href="include/css/fonts/fontawesome-webfont-subset.woff2?v=4.7.1" as="font" type="font/woff2" crossorigin="anonymous">	<script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-MZWFF7"></script><script src="/C_Common/js/jquery-3.7.0.min.js"></script>
+	<script src="/C_Common/js/common.min.js?v=4.9"></script>
+	<script src="include/js/cashier.min.js?v=4.9"></script>
+	<script src="/C_Common/js/jBox.cust.min.js?v=4.9" defer=""></script>
+
+	<script>
+		var global_webapp = (("standalone" in window.navigator) && window.navigator.standalone ) ? true : false;
+		SetCookie("GlobalWebApp",global_webapp,null);
+		var isTouchSupported = isTouchSupported();
+		var setFocusOnLoad = true;
+	
+	</script>
+
+	<script>
+	// global javascript strings
+	var autoRedirectText="<div xmlns=\x22http:\x2F\x2Fwww.w3.org\x2F1999\x2Fxhtml\x22><strong>REDIRECTING…<\x2Fstrong><\x2Fdiv><div xmlns=\x22http:\x2F\x2Fwww.w3.org\x2F1999\x2Fxhtml\x22>If not automatically redirected within 5 seconds, click the button below.<\x2Fdiv>";
+	var newWindowRedirect="Your transaction will open in a new window.";
+	var submitButtonClickedText="Processing your request";
+	var gblamountLabel="Amount USD";
+	var gblchargeAmountLabel="Charge Amount";
+	var gblrequiredfieldsMsg="The following form fields are either invalid or missing. Please review.";
+	var gblalertDefaultTitle="Information";
+	var gblOkButton="OK";
+	
+	function forgetPaymentMethod(AccountIdentifier, PaymentMethod) {
+		dfConfirmBox ("Forget this payment method account?<p><span class='" + PaymentMethod + " xs-pmimage spritepp'></span> " + AccountIdentifier + "<br><span class='smalltext secondary-text'>Don\x27t worry, you can always add it again.</span>", "Confirmation", "Yes" , "No", function(){AJAXForgetCustomerPaymentMethod(PaymentMethod,AccountIdentifier);document.body.querySelector(`li[data-cardnumber="${AccountIdentifier}"]`).remove();aniEffect($("#cardnumber")[0],"aniEffect-highlight");});
+		return false;
+	};
+	</script>
+<!--// start of website analytics code -->
+
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MZWFF7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZWFF7');</script>
+
+	<!--// end of website analytics code -->
+
+<!-- insert page javascript here -->
+</head>
+
+<body>
+
+<!-- Start of Right Click Context Header Code'######  -->
+<div id="contextmenu" class="cntxtskin" style="left: 373px; top: 310px; visibility: visible;">
+
+<div class="cntxtmenuitems" title="Back" onclick="javascript:history.back();"><span class="fa fa-chevron-left fa-fw valignmiddle"></span>&nbsp;Back</div>
+<div class="cntxtmenuitems" title="Forward" onclick="javascript:history.forward();"><span class="fa fa-chevron-right fa-fw valignmiddle"></span>&nbsp;Forward</div>
+
+<div class="cntxtmenuitems" title="Print" onclick="javascript:window.print();"><span class="fa fa-print fa-fw"></span>&nbsp;Print...</div>
+<hr>
+
+
+
+<div class="cntxtmenuitems" title="Customer Services" onclick="dynaHelp=window.open('dynaHelp.asp?FrontEnd=Deriv (SVG) LLC USD&amp;PIN=CR5581289&amp;Topic=ContactUs&amp;Lang=en','dynaHelp','toolbar=no,width=630,height=400,resizable=yes,scrollbars=yes');try{dynaHelp.focus();} catch (e) {return true;};event.stopImmediatePropagation();return false;"><span class="fa fa-question-circle fa-fw"></span>&nbsp;Customer Services&nbsp;<span class="fa fa-external-link"></span></div>
+
+<div class="cntxtmenuitems" title="SECURE SITE" onclick="javascript:dfAlertBox(&quot;Our site protected by TLS (Transport Layer Security)&quot;,&quot;Information&quot;,&quot;OK&quot;);"><span class="fa fa-lock fa-fw"></span>&nbsp;SECURE SITE</div>
+
+<div id="AppPoweredBy" class="fineprint" title="Powered by PremierCashier.com"><span class="fa fa-plug fa-fw"></span>&nbsp;Powered by <a href="https://premiercashier.com" class="linkline" target="_blank" style="transition:none;" rel="noreferrer noopener">PremierCashier</a></div>
+		
+</div>
+<!-- End of Right Click Context Header Code '######## -->
+
+
+
+<!-- top of page: header -->
+<header>
+
+<nav class="navbar">
+	<!-- main style="padding-top: 0 !important;margin-top: 5px;">
+		<div class="alignleft"><span class="fa fa-cubes muted"></span> YourWebApp<a class="fa fa-bars floatright menubutton" style="font-size: 1em;width: auto;padding: 3px 5px;"></a></div>
+	</main -->
+
+	<ul id="navmenu" class="horizontaltouchscroll">
+		
+		
+		
+	</ul>
+</nav>
+
+</header>
+
+
+<!-- start of main page area -->
+<main>
+<a id="pagetop"></a>
+<div class="displayarea lefttext"><div class="toppaymentmethodarea" style="visibility: visible; display: none;">
+			<a class="toppaymentbutton" href="CC_Deposit.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176&amp;CardType=VISA" title="Deposit: VISA" style="display: flex; visibility: visible;">
+			
+			<span class="VISA spritepp"></span>
+			
+		</a>
+
+			<a class="toppaymentbutton" href="AirTM_Deposit.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176" title="Deposit: AirTM" style="display: flex; visibility: visible;">
+			
+					<span class="AirTM spritepp" title="Deposit"></span>
+			</a>
+			<a class="toppaymentbutton" href="volet_Deposit.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176" title="Deposit: volet" style="display: flex; visibility: visible;">
+			
+					<span class="volet spritepp" title="Deposit"></span>
+			</a>
+			<a class="toppaymentbutton" href="Jeton_Deposit.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176&amp;PaymentMethod=JetonWL" title="Deposit: JetonWL" style="display: flex; visibility: visible;">
+			
+					<span class="JetonWL spritepp" title="Deposit"></span>
+			</a>
+			<a class="toppaymentbutton" href="NETellerPS_Deposit.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176" title="Deposit: NETeller" style="display: flex; visibility: visible;">
+			
+					<span class="NETeller spritepp" title="Deposit"></span>
+			</a>
+			<a class="toppaymentbutton" href="PerfectM_Deposit.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176" title="Deposit: PerfectM" style="display: flex; visibility: visible;">
+			
+					<span class="PerfectM spritepp" title="Deposit"></span>
+			</a>
+			<a class="toppaymentbutton" href="Skrill_Deposit.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176" title="Deposit: Skrill" style="display: flex; visibility: visible;">
+			
+					<span class="Skrill spritepp" title="Deposit"></span>
+			</a>
+			<a class="toppaymentbutton" href="JetonCash_Deposit.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176" title="Deposit: JetonCash" style="display: flex; visibility: visible;">
+			
+					<span class="JetonCash spritepp" title="Deposit"></span>
+			</a>
+	<a class="toppaymentbutton more" href="Deposits.asp?FrontEnd=Deriv+%28SVG%29+LLC+USD&amp;PIN=CR5581289&amp;UDef1=EN&amp;UDef2=deriv&amp;UDef3=CR5581289&amp;UDef4=9228176" title="View more deposit options" style="visibility: visible;"><span class="navicon">•••</span></a>
+
+</div></div>
+	<noscript>
+		<div class="warningarea"><b>Attention:</b> <i>Javascript</i> is required for the full functioning of this website. Please enable <i>Javascript</i> in your web browser settings or make an exception for this website.</div>
+	</noscript>
+	<div id="dynamsg" style="display: none;">
+		<div id="loadingimg">
+			<div class="loader-ellipsis"><div></div><div></div><div></div><div></div></div>
+		</div>
+		<div id="dynamsgtext">Stopped</div>
+	</div>
+<script>SetStatus('Contacting payment provider...')</script>
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<!-- BOM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+EOM -->
+
+
+<script>
+	ProcessingFinished ("Your Transaction is Complete!");
+
+	document.getElementsByTagName('html')[0].setAttribute('data-pagetype','deposit-approved');
+	
+	$(function(){	//document ready
+		$(".toppaymentmethodarea").hide();
+		$("#nav-backbtn").remove();
+		
+		
+		if ($(".txnSuccess").length) {
+			setTimeout(function () {
+				$("#depositsnd").prop("volume","0.5").trigger("play");
+				
+			}, 1100);
+		}
+	});
+</script>
+
+<audio id="depositsnd" preload="auto">
+	<source src="C_Common/include/audio/deposit.mp3">
+</audio>
+
+<div class="containwidth">
+<div class="formsection">
+
+	<div class="successContainer">
+		<svg class="txnSuccess" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"></circle><path class="checkmark__check" stroke-linejoin="round" stroke-linecap="round" stroke-width="4" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path></svg>
+	</div>
+	<div class="formheader title">
+		Transaction Approved
+	</div>
+	
+
+<div class="formrowwrapper">
+
+
+	<div id="cmPaymentMethod" class="formrow nowrapflex">
+		<label class="shortformlabel">Payment via</label>
+		<span class="longformelement">
+			<span>
+	<span class="VISA sm-pmimage spritepp" title="VISA"></span><br>478393******6221
+			</span>
+		</span>
+	</div>
+	
+
+
+	<div id="cmPIN" class="formrow nowrapflex">
+		<label class="shortformlabel">Account ID</label>
+		<span class="longformelement">
+		CR5581289
+		</span>
+	</div>
+	
+	<div id="cmAmount" class="formrow nowrapflex">
+		<label class="shortformlabel">Amount USD</label>
+		<span class="longformelement"><span>$&nbsp;10.00 <span style="display:contents;font-size:smaller">USD</span></span></span>
+	</div>
+
+
+
+	<div id="cmTraceID" class="formrow nowrapflex">
+		<label class="shortformlabel">Trace ID</label>
+		<span class="longformelement">
+		50617571
+		</span>
+	</div>
+	
+
+	<div id="cmPPCreatedDate" class="formrow nowrapflex">
+		<label class="shortformlabel">Date</label>
+		<span class="longformelement">06/28/2024</span>
+	</div>
+	
+
+	<div id="cmBalance" class="formrow nowrapflex">
+		<label class="shortformlabel">Current Balance</label>
+		<span class="longformelement bolded">$&nbsp;10.00 <span style="display:contents;font-size:smaller">USD</span></span>
+	</div>
+<div class="noticemsgsmall normaltext">Your transaction will appear on your statement as:<br><div class="descriptortext">$&nbsp;10.00 <span style="display:contents;font-size:smaller">USD</span>&nbsp;&nbsp;&nbsp;Deriv.com</div></div>
+
+	
+</div>	<!-- formrowwrapper -->
+	
+	<div class="fineprint lefttext secondary-text mobilehidden">
+	A confirmation email has been sent to you from <b>no-reply@deriv.com</b> and should arrive shortly. Please ensure this email address is added to your safe senders list to ensure sent items do not land in your junk mail.<p>
+		
+	</p></div>
+
+
+
+</div>
+</div>
+
+
+</main><div class="spinner" id="divSpinner" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0 200,200"><defs><clipPath id="ring"><path d="M200,100A100,100,0,1,1,197.81,79.21L188.03,81.29A90,90,0,1,0,190,100z"></path></clipPath><filter id="blur" x="0" y="0"><feGaussianBlur in="SourceGraphic" stdDeviation="3"></feGaussianBlur></filter><path id="p" d="M250,100A150,150,0,0,1,246.72,131.19L100,100A0,0,0,0,0,100,100z"></path></defs><g clip-path="url(#ring)"><g filter="url(#blur)" transform="rotate(-6 100 100)"><use xlink:href="#p" fill-opacity="0" transform="rotate(0 100 100)"></use><use xlink:href="#p" fill-opacity=".03" transform="rotate(12 100 100)"></use><use xlink:href="#p" fill-opacity=".07" transform="rotate(24 100 100)"></use><use xlink:href="#p" fill-opacity=".1" transform="rotate(36 100 100)"></use><use xlink:href="#p" fill-opacity=".14" transform="rotate(48 100 100)"></use><use xlink:href="#p" fill-opacity=".17" transform="rotate(60 100 100)"></use><use xlink:href="#p" fill-opacity=".2" transform="rotate(72 100 100)"></use><use xlink:href="#p" fill-opacity=".24" transform="rotate(84 100 100)"></use><use xlink:href="#p" fill-opacity=".28" transform="rotate(96 100 100)"></use><use xlink:href="#p" fill-opacity=".31" transform="rotate(108 100 100)"></use><use xlink:href="#p" fill-opacity=".34" transform="rotate(120 100 100)"></use><use xlink:href="#p" fill-opacity=".38" transform="rotate(132 100 100)"></use><use xlink:href="#p" fill-opacity=".41" transform="rotate(144 100 100)"></use><use xlink:href="#p" fill-opacity=".45" transform="rotate(156 100 100)"></use><use xlink:href="#p" fill-opacity=".48" transform="rotate(168 100 100)"></use><use xlink:href="#p" fill-opacity=".52" transform="rotate(180 100 100)"></use><use xlink:href="#p" fill-opacity=".55" transform="rotate(192 100 100)"></use><use xlink:href="#p" fill-opacity=".59" transform="rotate(204 100 100)"></use><use xlink:href="#p" fill-opacity=".62" transform="rotate(216 100 100)"></use><use xlink:href="#p" fill-opacity=".66" transform="rotate(228 100 100)"></use><use xlink:href="#p" fill-opacity=".69" transform="rotate(240 100 100)"></use><use xlink:href="#p" fill-opacity=".7" transform="rotate(252 100 100)"></use><use xlink:href="#p" fill-opacity=".72" transform="rotate(264 100 100)"></use><use xlink:href="#p" fill-opacity=".76" transform="rotate(276 100 100)"></use><use xlink:href="#p" fill-opacity=".79" transform="rotate(288 100 100)"></use><use xlink:href="#p" fill-opacity=".83" transform="rotate(300 100 100)"></use><use xlink:href="#p" fill-opacity=".86" transform="rotate(312 100 100)"></use><use xlink:href="#p" fill-opacity=".93" transform="rotate(324 100 100)"></use><use xlink:href="#p" fill-opacity=".97" transform="rotate(336 100 100)"></use><use xlink:href="#p" fill-opacity="1" transform="rotate(348 100 100)"></use></g></g></svg></div> <!-- End of main page area -->
+<footer>
+
+	<div class="freetextarea copyright mobilehidden">
+		© Copyright 2024&nbsp;Deriv (SVG) LLC USD
+		&nbsp;&nbsp;<span class="fa fa-lock fa-lg" title="Our site protected by TLS (Transport Layer Security)"></span> SECURE SITE
+	</div>
+
+</footer>
+<a id="backtotop" class="backtotop no-print" title="Back to Top" href="javascript:location.replace('#pagetop')" style="right: 25px;"><span class="fa fa-chevron-up"></span></a>
+
+
+			<div class="watermark applogo" title="Powered by PremierCashier.com">
+				<svg class="applogo" viewBox="0 0 435 510"><g class="applogo-style"><path class="line_1" d="m 126.26377,127.91029 0.22716,115.47149"></path><path class="line_2" d="m 275.708,256.21191 0.28206,-115.47137"></path><path class="s_shape" d="M 63.188679,201.36302 C 49.591921,191.07466 38.717898,177.22076 31.954151,161.56912 25.190405,145.91748 22.552612,128.50436 24.377358,111.5517 26.187065,94.738763 32.392202,78.396256 42.339623,64.721509 56.129805,45.764108 76.882659,32.312601 99.433963,25.910188 c 18.956947,-5.38196 39.392687,-5.924867 58.377357,-0.641509 18.41941,5.126048 35.23703,15.696726 48.11321,29.830189 14.46195,15.874074 23.95959,36.357178 25.98113,57.735852 1.64075,17.35171 -1.65541,35.17772 -9.62264,50.67924 -3.53092,6.86998 -7.94359,13.26322 -12.83019,19.24529 -8.70466,10.65605 -18.97424,20.10877 -26.30189,31.75472 -6.86134,10.90483 -10.91738,23.46018 -12.50943,36.24528 -2.44907,19.66741 0.95481,40.07204 9.9434,57.73585 11.65183,22.89743 32.59213,40.71783 56.77358,49.39622 17.46296,6.26722 36.58674,7.89884 54.83135,4.52731 18.24461,-3.37154 35.5577,-11.75488 49.41393,-24.09335 12.51946,-11.14813 22.15778,-25.43005 28.22641,-41.05661 6.34785,-16.34555 8.81088,-34.31832 6.09435,-51.6415 -1.86767,-11.91 -6.16294,-23.42946 -12.50944,-33.67925 -5.9296,-9.57648 -13.56994,-17.97283 -21.49056,-25.98113 -1.06329,-1.07506 -2.13249,-2.14426 -3.20755,-3.20755"></path></g></svg>
+			</div>
+<script>if (typeof ProcessingFinished === 'function') {ProcessingFinished ('Stopped')};</script>
+<!--// Start of PixelTrackingCode -->
+<script type="text/javascript">
+
+var dfx = {"event": "df_deposit", "df_traceid":"50617571","df_pin":"CR5581289","df_amount":"10","df_currencycode":"USD","df_cardtype":"VISA","df_approved":"Y"};
+dataLayer.push(dfx);
+if (self.parent && self.parent.postMessage) {
+  self.parent.postMessage(JSON.stringify(dfx), '*');
+}
+
+</script>
+<!--// End of PixelTrackingCode -->
+
+		
+		
+	</body></html>
